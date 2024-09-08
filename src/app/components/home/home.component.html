@@ -15,16 +15,35 @@
   </form>
 
   <!-- Filtered Countries List -->
-  <ul *ngIf="filteredCountries.length > 0" class="country-list">
-    <li *ngFor="let country of filteredCountries">
+  <ul  class="country-list">
+    @for(country of filteredCountries; track country){
+    <li>
       <a [routerLink]="['/country', country.countryCode]">{{ country.name }} ({{ country.countryCode }})</a>
     </li>
+    }
   </ul>
+  <div  class="error-message">
+    @if(errorMessage){
+      {{ errorMessage }}
+    }
+
+  </div>
 
   <!-- Random Countries Widget -->
   <h2>Random Countries</h2>
+
+  <!-- Loading Spinner -->
+  <div  class="spinner-container">
+    @if(isLoadingRandomCountries){
+        <mat-spinner></mat-spinner>
+    }
+  </div>
+
+  <!-- Random Countries List -->
   <div class="random-countries">
-    <mat-card *ngFor="let rc of randomCountries" class="random-country">
+    @if(!isLoadingRandomCountries){
+    @for(rc of randomCountries; track rc){
+    <mat-card  class="random-country">
       <mat-card-title>
         <a [routerLink]="['/country', rc.country.countryCode]">{{ rc.country.name }}</a>
       </mat-card-title>
@@ -33,7 +52,12 @@
         <p>Date: {{ rc.holiday.date | date }}</p>
       </mat-card-content>
     </mat-card>
+    }
+    }
   </div>
+
+  <!-- Refresh Button -->
   <button mat-raised-button color="accent" (click)="loadRandomCountries()">Refresh Random Countries</button>
 </div>
+
 

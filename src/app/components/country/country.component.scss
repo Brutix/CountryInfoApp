@@ -1,0 +1,35 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.year-switcher {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.year-buttons {
+  margin-left: 10px;
+}
+
+.year-buttons button {
+  margin-right: 5px;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
