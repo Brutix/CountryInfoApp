@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Country Information</h1>
+
+  <!-- Search Form -->
+  <form>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Search for a country</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        name="country"
+        (input)="onSearchTermChange()"
+        placeholder="e.g., United States or US">
+    </mat-form-field>
+  </form>
+
+  <!-- Filtered Countries List -->
+  <ul *ngIf="filteredCountries.length > 0" class="country-list">
+    <li *ngFor="let country of filteredCountries">
+      <a [routerLink]="['/country', country.countryCode]">{{ country.name }} ({{ country.countryCode }})</a>
+    </li>
+  </ul>
+
+  <!-- Random Countries Widget -->
+  <h2>Random Countries</h2>
+  <div class="random-countries">
+    <mat-card *ngFor="let rc of randomCountries" class="random-country">
+      <mat-card-title>
+        <a [routerLink]="['/country', rc.country.countryCode]">{{ rc.country.name }}</a>
+      </mat-card-title>
+      <mat-card-content>
+        <p>Next Holiday: {{ rc.holiday.localName }}</p>
+        <p>Date: {{ rc.holiday.date | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="accent" (click)="loadRandomCountries()">Refresh Random Countries</button>
+</div>
+
