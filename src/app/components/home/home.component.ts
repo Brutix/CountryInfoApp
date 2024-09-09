@@ -7,13 +7,23 @@ import { RouterLink } from '@angular/router';
 import { AvailableCountry } from '../../interfaces/interfaces';
 import { CountryService }  from '../../services/country.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatFormFieldModule, MatCardModule, MatInputModule, FormsModule, RouterLink, MatProgressSpinner, DatePipe],
+  imports: [
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    FormsModule,
+    RouterLink,
+    MatProgressSpinner,
+    DatePipe,
+    MatButton
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

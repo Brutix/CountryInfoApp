@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AvailableCountry } from '../../interfaces/interfaces';
 import { Holiday } from '../../interfaces/interfaces';
 import { CountryService }  from '../../services/country.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButton } from '@angular/material/button';
-import { MatTable } from '@angular/material/table';
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow, MatRowDef,
+  MatTable
+} from '@angular/material/table';
 import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-country',
@@ -17,7 +23,16 @@ import { DatePipe } from '@angular/common';
     MatProgressSpinner,
     MatButton,
     MatTable,
-    DatePipe
+    DatePipe,
+    MatHeaderCell,
+    MatCell,
+    MatColumnDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatRowDef
   ],
   templateUrl: './country.component.html',
   styleUrl: './country.component.scss'
@@ -33,7 +48,8 @@ export class CountryComponent {
 
   constructor(
     private countryService: CountryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.selectedYear = new Date().getFullYear();
     this.years = Array.from({ length: 11 }, (_, i) => 2020 + i); // 2020-2030
@@ -96,6 +112,9 @@ export class CountryComponent {
     this.getHolidays(year);
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 
 }
 

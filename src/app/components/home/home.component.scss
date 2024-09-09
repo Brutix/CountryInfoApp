@@ -1,3 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+input, button, .random-countries, .country-list {
+  margin: 10px 0;
+}
+
 .error-message {
   color: red;
   margin-top: 10px;
@@ -9,3 +22,21 @@
   align-items: center;
   height: 100px;
 }
+.random-countries {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.random-country {
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .random-country {
+    width: 100%;
+  }
+}
+
