@@ -48,7 +48,7 @@ export class HomeComponent {
     this.countryService.getAvailableCountries().subscribe(
       (countries) => {
         this.availableCountries = countries;
-        // this.loadRandomCountries();
+        this.loadRandomCountries();
       },
       (error) => {
         console.error('Error fetching available countries', error);
