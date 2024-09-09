@@ -1,27 +1,115 @@
-# CountryInfoApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
+# Country Info Application
 
-## Development server
+This is an Angular application that allows users to search for countries, view detailed information about their holidays, and see neighboring countries. It uses the [Nager.Date API](https://date.nager.at/) to fetch country and holiday data.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Building the Application](#building-the-application)
+- [Architecture](#architecture)
+- [Libraries and Tools](#libraries-and-tools)
+- [Environment Configuration](#environment-configuration)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Search Countries**: Search for countries by name and view country details.
+- **View Holidays**: Display the list of holidays for a selected country, including the name, date, and type of the holiday.
+- **Neighboring Countries**: View neighboring countries for the selected country.
+- **Random Countries Widget**: Displays a widget that shows three random countries and their upcoming holidays.
+- **Year Switching**: Users can switch between different years (2020-2030) to view holidays for the selected country.
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/angular-country-info-app.git
+   ```
 
-## Running unit tests
+2. Navigate to the project directory:
+   ```bash
+   cd angular-country-info-app
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-## Running end-to-end tests
+## Running the Application
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To run the application locally:
 
-## Further help
+1. Start the Angular development server:
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. Open your browser and navigate to `http://localhost:4200/`.
+
+The application will automatically reload if you make any changes to the code.
+
+## Building the Application
+
+To build the application for production:
+
+1. Run the build command:
+   ```bash
+   ng build --prod
+   ```
+
+The build artifacts will be stored in the `dist/` directory. You can deploy these files to a web server.
+
+## Architecture
+
+The application is divided into the following components:
+
+- **HomeComponent**: The landing page where users can search for countries, view random countries and their holidays, and navigate to a country's detail page.
+- **CountryComponent**: Displays detailed information about the selected country, including a list of holidays and the neighboring countries.
+
+### Service Layer:
+- **CountryService**: Handles fetching data from the [Nager.Date API](https://date.nager.at/), including country details and holiday information.
+
+### Environment Configuration:
+The project uses Angular's environment configuration files for managing different environments (development, production). API URLs and other sensitive information can be stored in these files.
+
+## Libraries and Tools
+
+- **Angular**: A popular web framework for building single-page applications (SPA).
+- **Nager.Date API**: An external REST API for retrieving country and holiday data.
+- **ESLint**: Used for linting TypeScript code to maintain code quality.
+- **Prettier**: Used for code formatting to ensure consistency.
+- **RxJS**: Angular's default reactive programming library, used for handling HTTP requests and other asynchronous operations.
+
+## Environment Configuration
+
+The application uses Angular's environment files to store environment-specific settings such as API URLs. You can find these files in the `src/environments/` directory.
+
+- **`environment.ts`** (for development)
+- **`environment.prod.ts`** (for production)
+
+To configure the API URL and any other environment variables, update the respective environment file:
+```typescript
+export const environment = {
+  production: false,
+    availableCountriesUrl: 'https://date.nager.at/api/v3/AvailableCountries/',
+    holidayApiUrl: 'https://date.nager.at/api/v3/PublicHolidays'
+};
+```
+
+## Additional Notes
+
+- **ESLint and Prettier**: This project uses ESLint for linting and Prettier for formatting. You can run the following commands to lint or format the code:
+    - To lint the code:
+      ```bash
+      npm run lint
+      ```
+    - To format the code:
+      ```bash
+      npm run format
+      ```
+
+---
+
+This `README.md` provides all the necessary details for developers to set up, run, and build the Angular application while maintaining consistency and code quality. Adjust the API URLs and paths based on your actual project setup.
