@@ -9,6 +9,7 @@ import { CountryService }  from '../../services/country.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { MatButton } from '@angular/material/button';
     RouterLink,
     MatProgressSpinner,
     DatePipe,
-    MatButton
+    MatButton,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -35,7 +36,7 @@ export class HomeComponent {
   availableCountries: AvailableCountry[] = [];
   currentYear: number = new Date().getFullYear();
   isLoadingRandomCountries: boolean = false;
-
+  private countriesSubscription!: Subscription;
   randomCountries: Array<{
     country: AvailableCountry,
     holiday: any
@@ -44,8 +45,9 @@ export class HomeComponent {
   constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
+
     // Fetch all available countries on initialization
-    this.countryService.getAvailableCountries().subscribe(
+    this.countriesSubscription = this.countryService.getAvailableCountries().subscribe(
       (countries) => {
         this.availableCountries = countries;
         this.loadRandomCountries();
@@ -54,6 +56,14 @@ export class HomeComponent {
         console.error('Error fetching available countries', error);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.countriesSubscription) {
+      console.log('Unsubscribing from countries subscription');
+      this.countriesSubscription.unsubscribe();
+    }
   }
 
   onSearchTermChange(): void {
