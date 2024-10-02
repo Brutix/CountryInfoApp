@@ -28,36 +28,37 @@
     }
 
   </div>
-
-  <!-- Random Countries Widget -->
-  <h2>Random Countries</h2>
-
-  <!-- Loading Spinner -->
-  <div  class="spinner-container">
+<div class="widjet">
+   <!-- Random Countries Widget -->
+   <h2>Random Countries</h2>
+   <!-- Random Countries List -->
+   <div class="random-countries">
+    <!-- Loading Spinner -->
+   <div  class="spinner-container">
     @if(isLoadingRandomCountries){
         <mat-spinner></mat-spinner>
     }
   </div>
+       @if(!isLoadingRandomCountries){
+     @for(rc of randomCountries; track rc){
+     <mat-card  class="random-country">
+       <mat-card-title>
+         <a [routerLink]="['/country', rc.country.countryCode]">{{ rc.country.name }}</a>
+       </mat-card-title>
+       <mat-card-content>
+         <p>Next Holiday: {{ rc.holiday.localName }}</p>
+         <p>Date: {{ rc.holiday.date | date }}</p>
+       </mat-card-content>
+     </mat-card>
+     }
+    }
 
-  <!-- Random Countries List -->
-  <div class="random-countries">
-    @if(!isLoadingRandomCountries){
-    @for(rc of randomCountries; track rc){
-    <mat-card  class="random-country">
-      <mat-card-title>
-        <a [routerLink]="['/country', rc.country.countryCode]">{{ rc.country.name }}</a>
-      </mat-card-title>
-      <mat-card-content>
-        <p>Next Holiday: {{ rc.holiday.localName }}</p>
-        <p>Date: {{ rc.holiday.date | date }}</p>
-      </mat-card-content>
-    </mat-card>
-    }
-    }
   </div>
+  <div class="btn">
+    <button mat-raised-button color="accent" (click)="loadRandomCountries(); $event.preventDefault()">Refresh Random Countries</button>
+  </div>
+</div>
 
-  <!-- Refresh Button -->
-  <button mat-raised-button color="accent" (click)="loadRandomCountries()">Refresh Random Countries</button>
 </div>
 
 
