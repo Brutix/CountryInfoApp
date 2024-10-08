@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Holiday } from '../../interfaces/interfaces';
+import { AvailableCountry, Holiday } from '../../interfaces/interfaces';
 import { CountryService }  from '../../services/country.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatButton } from '@angular/material/button';
 import {
@@ -14,7 +14,7 @@ import {
   MatTable
 } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
-import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-country',
@@ -49,7 +49,7 @@ export class CountryComponent {
   constructor(
     private countryService: CountryService,
     private route: ActivatedRoute,
-    private location: Location
+    private router: Router
   ) {
     this.selectedYear = new Date().getFullYear();
     this.years = Array.from({ length: 11 }, (_, i) => 2020 + i); // 2020-2030
@@ -113,7 +113,7 @@ export class CountryComponent {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 
 }
