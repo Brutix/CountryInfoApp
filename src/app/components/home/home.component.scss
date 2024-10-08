@@ -21,24 +21,41 @@ input, button, .random-countries, .country-list {
 }
 
 .spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .random-countries {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
-}
+  }
 
 .random-country {
+  position: relative;
+  overflow: hidden;
   width: 30%;
   margin-bottom: 20px;
+ }
+
+.widjet {
+  margin-bottom: 10px;
 }
 
+
 @media (max-width: 768px) {
+  .container {
+    min-height: 100%;
+  }
+
   .random-country {
     width: 100%;
   }
