@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AvailableCountry } from '../../interfaces/interfaces';
 import { CountryService }  from '../../services/country.service';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
@@ -42,7 +42,10 @@ export class HomeComponent {
     holiday: any
   }> = [];
 
-  constructor(private countryService: CountryService) { }
+  constructor(
+    private countryService: CountryService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
@@ -132,6 +135,10 @@ export class HomeComponent {
         }
       );
     });
+  }
+
+  backToLogin(): void {
+    this.router.navigate(['/']);
   }
 
 
