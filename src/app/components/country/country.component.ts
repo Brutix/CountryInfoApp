@@ -78,6 +78,7 @@ export class CountryComponent {
     this.countryService.getCountryHolidays(this.countryCode, year).subscribe(
       (data) => {
         this.holidays = data;
+        console.log(data);
         this.isLoadingHolidays = false;
       },
       (error) => {
